@@ -80,7 +80,7 @@ describe('Our first suite', () => {
         cy.contains('nb-card', 'Horizontal form').find('[type="email"]')
     })
 
-    it.only('then and wrap methods', () => {
+   it.only('then and wrap methods', () => {
          cy.visit('/')
          cy.contains('Forms').click()
          cy.contains('Form Layouts').click()
@@ -103,8 +103,10 @@ describe('Our first suite', () => {
             cy.contains ('nb-card', 'Basic form').then( secondForm => {
                 const password2Label = secondForm.find('[for="exampleInputPassword1"]').text()
                 expect(password2Label).to.equal('Password')
+
+            cy.wrap(secondForm).find('[for="exampleInputPassword1"]').should('contain', 'Password')
             })
         })
 
     })
-})
+

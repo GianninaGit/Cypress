@@ -2,7 +2,7 @@
 
 describe('Our first suite', () => {
   
-        it.only('Invoke command', () => {
+        it('Invoke command', () => {
         cy.visit('/')
         cy.contains('Forms').click()
         cy.contains('Form Layouts').click()
@@ -20,7 +20,7 @@ describe('Our first suite', () => {
             expect(text).to.equal('Email address')
         })
 
-        //3b
+        //3b Checkear si está checkeado
         cy.contains('nb-card', 'Basic form')
             .find('nb-checkbox')
             .click()
@@ -31,7 +31,21 @@ describe('Our first suite', () => {
             .then(classValue => {
                 expect(classValue).to.contain('checked')
             })
+        })
+        //3c Checkear fecha texto ingresado:
 
-          
 
     })
+
+    it.only('Assert property', () => {
+        cy.visit('/')
+        cy.contains('Forms').click()
+        cy.contains('Datepicker').click()
+        cy.contains('nb-card', 'Common Datepicker').find('input').then( input => {
+            cy.wrap(input).click()
+            cy.get('nb-calendar-day-picker'). contains('18').click()
+            cy.wrap(input).invoke('prop', 'value').should('contain', 'Apr 18, 2023')
+        })
+    })
+
+

@@ -26,4 +26,16 @@ it.only('radio button', () => {
         
         })
     })
+    it.only('check boxes', () => {
+        cy.visit('/')
+        cy.contains('Modal & Overlays').click()
+        cy.contains('Toastr').click()
+
+        cy.get('[type="checkbox"]').check({force:true}) //busco el input. Check marca lo unchecked pero no desmarca.
+        cy.get('[type="checkbox"]').eq(0).click({force:true}) //Click desmarca lo que esté checked.
+
+        //CHECK METHOD: Sólo usar con types INPUT de CHECKBOX Y RADIO BUTTONS. Solo check, no uncheck -> usar .click()
+
+
+    })
 })
